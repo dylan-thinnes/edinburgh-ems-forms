@@ -63,7 +63,28 @@ var cookieParser = require("cookie-parser");
             res.status(401).send("invalid field");
         }
 
-        await db.run(`UPDATE reqs SET ${field} = ? WHERE id = ?`, [value, id]);
+        try {
+            await db.run(`UPDATE reqs SET ${field} = ? WHERE id = ?`, [value, id]);
+        } catch (e) {
+            res.status(400).send();
+        }
+
+        res.json({});
+    });
+
+    app.get("/api/delete", async function (req, res) {
+        var { id } = req.query;
+        id = parseInt(id);
+
+        if (isNaN(id)) {
+            res.status(401).send("isnan id");
+        }
+
+        try {
+            await db.run(`DELETE FROM reqs WHERE id = ?`, [id]);
+        } catch (e) {
+            res.status(400).send();
+        }
 
         res.json({});
     });
