@@ -13,6 +13,7 @@ function updateState (newstate) {
     table.appendChild(tr);
 
     for (var field of Object.values(CONSTANTS.TABLE_FIELDS)) {
+        if (field.transform == null) continue;
         var th = document.createElement("th");
         th.innerHTML = field.show;
         tr.appendChild(th);
@@ -25,8 +26,8 @@ function updateState (newstate) {
         let tr = document.createElement("tr");
 
         for (let field of Object.values(CONSTANTS.TABLE_FIELDS)) {
-            var td = document.createElement("td");
             if (field.transform == null) continue;
+            var td = document.createElement("td");
             td.appendChild(field.transform(row[field.name]));
             tr.appendChild(td);
         }
