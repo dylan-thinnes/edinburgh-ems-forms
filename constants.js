@@ -18,7 +18,6 @@ TABLE_FIELDS = {
         "generate": null,
         "show": "ID",
         "transform": toText,
-
         "sql": " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL"
     },
     "timestamp": {
@@ -26,7 +25,6 @@ TABLE_FIELDS = {
         "generate": () => Date.now(),
         "show": "Date",
         "transform": x => toText((new Date(x)).toLocaleString()),
-
         "sql": " INTEGER NOT NULL"
     },
     "status": {
@@ -34,7 +32,6 @@ TABLE_FIELDS = {
         "generate": () => PENDING,
         "show": "Status",
         "transform": null, // compose(toText, STATUS_NAME),
-
         "sql": " INTEGER NOT NULL"
     },
     "name": {
@@ -42,7 +39,6 @@ TABLE_FIELDS = {
         "generate": id,
         "show": "Name",
         "transform": toText,
-
         "sql": " TEXT NOT NULL"
     },
     "institution_name": {
@@ -50,7 +46,6 @@ TABLE_FIELDS = {
         "generate": id,
         "show": "Institution Name",
         "transform": toText,
-
         "sql": " TEXT NOT NULL"
     },
     "contact_email": {
@@ -58,7 +53,6 @@ TABLE_FIELDS = {
         "generate": id,
         "show": "Contact Email",
         "transform": toText,
-
         "sql": " TEXT NOT NULL"
     },
     "contact_number": {
@@ -66,7 +60,6 @@ TABLE_FIELDS = {
         "generate": id,
         "show": "Contact Number",
         "transform": toText,
-
         "sql": " TEXT NOT NULL"
     },
     "regular_use": {
@@ -74,7 +67,6 @@ TABLE_FIELDS = {
         "generate": x => x == "true",
         "show": "Regular Use?",
         "transform": x => toText((x == 1).toString()),
-
         "sql": " INTEGER NOT NULL"
     },
     "shields_minimum": {
@@ -82,7 +74,6 @@ TABLE_FIELDS = {
         "generate": parseInt,
         "show": "Minimum Shields",
         "transform": x => toText(x.toString()),
-
         "sql": " INTEGER NOT NULL"
     },
     "shields_ideal": {
@@ -90,7 +81,6 @@ TABLE_FIELDS = {
         "generate": parseInt,
         "show": "Ideal Shields",
         "transform": x => toText(x.toString()),
-
         "sql": " INTEGER NOT NULL"
     },
     "delivery_address": {
@@ -98,7 +88,6 @@ TABLE_FIELDS = {
         "generate": id,
         "show": "Delivery Address",
         "transform": toText,
-
         "sql": " TEXT NOT NULL"
     },
     "delivery_instructions": {
@@ -106,7 +95,6 @@ TABLE_FIELDS = {
         "generate": id,
         "show": "Delivery Instructions",
         "transform": toText,
-
         "sql": " TEXT NOT NULL"
     },
     "why_need": {
@@ -114,7 +102,6 @@ TABLE_FIELDS = {
         "generate": id,
         "show": "What for?",
         "transform": toText,
-
         "sql": " TEXT NOT NULL"
     },
     "reuse": {
@@ -122,15 +109,34 @@ TABLE_FIELDS = {
         "generate": x => x == "true",
         "show": "Reuse?",
         "transform": x => toText((x == 1).toString()),
-
         "sql": " INTEGER NOT NULL"
+    },
+    "can_collect": {
+        "name": "can_collect",
+        "generate": x => x == "true",
+        "show": "Can Collect?",
+        "transform": x => toText((x == true).toString()),
+        "sql": " INTEGER NOT NULL"
+    },
+    "when_accepts_delivery": {
+        "name": "when_accepts_delivery",
+        "generate": id,
+        "show": "Delivery Acceptance Time",
+        "transform": toText,
+        "sql": " TEXT NOT NULL"
+    },
+    "cant_reach_backup": {
+        "name": "cant_reach_backup",
+        "generate": id,
+        "show": "\"Can't Reach\" Backup",
+        "transform": toText,
+        "sql": " TEXT NOT NULL"
     },
     "extranote": {
         "name": "extranote",
         "generate": id,
         "show": "Extra Notes",
         "transform": x => toText(x == null ? "(None)" : x),
-
         "sql": " TEXT"
     },
 }
